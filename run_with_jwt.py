@@ -93,9 +93,12 @@ def preauthorize(user_types_list):
     return login_decorator
 
 # Routing starts here...
-# Add a user
 
+
+# Add a user
+# Only Admin can add users
 @app.route('/user', methods=['POST'])
+@preauthorize(['admin'])
 def add_user():
     """
         Headers: \n
@@ -125,7 +128,7 @@ def add_user():
     return user_schema.jsonify(user)
 
 # List all users
-
+# Both Admin and User can list all users
 @app.route('/user', methods=['GET'])
 @preauthorize(['user', 'admin'])
 def list_users():
