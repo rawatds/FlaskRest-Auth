@@ -98,11 +98,18 @@ def preauthorize(user_types_list):
 @app.route('/user', methods=['POST'])
 def add_user():
     """
+        Headers: \n
+        'x-dsr-token' : <jwt-token> \n
+        'content-type' : 'application/json'
+
+
+        Sample Request body:
         {
-            "name" : "dsrawat",
-            "password" : "12345",
+            "name" : "dsrawat", \n
+            "password" : "12345", \n
             "user_type" : "admin"
         }
+
    """
     print("**", request.get_json(), request.json)
     name = request.json['name']
